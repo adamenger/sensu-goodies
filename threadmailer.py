@@ -1,10 +1,10 @@
 #made by @adamenger for @threadless
 #!/usr/bin/env python
-
 from email.mime.text import MIMEText
 import sys
 import json
 import subprocess
+import time
 
 #statuses
 statuses = {           
@@ -19,7 +19,7 @@ def status_history(history):
     for status in history:
         status_tmp.append(statuses[int(status)])
     return (",").join(status_tmp)
-                      
+
 #mail settings
 email_to = "adam.enger@skinnycorp.com"
 email_from = "devops@threadless.com"
@@ -46,7 +46,7 @@ Node Name:          {6}
 Node IP Address:    {7}                                      
 Node LPOL:          {8}                        
 Node Subscriptions: {9}                       
-""".format(alert['check']['issued'],
+""".format(time.strftime("%D %H:%M", time.localtime(int(alert['check']['issued']))),
            alert['check']['name'],
            alert['check']['command'],
            alert['check']['flapping'],
@@ -55,7 +55,7 @@ Node Subscriptions: {9}
            alert['client']['name'],
            alert['client']['address'],
            alert['client']['timestamp'],
-           alert['client']['subscriptions']
+           (",").join(alert['client']['subscriptions'])
 )
 
 #construct email
