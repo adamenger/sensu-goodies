@@ -63,7 +63,7 @@ msg = MIMEText(email_msg)
 msg["From"] = "DevOps <devops@threadless.com>"
 msg["Name"] = "DevOps"
 msg["To"] = "adam.enger@skinnycorp.com"
-msg["Subject"] = "%s :: %s " % (statuses[alert['check']['status']], alert['check']['name'])
+msg["Subject"] = "%s :: %s" % (statuses[alert['check']['status']], alert['check']['name'])
 
 #fire it off
 proc = subprocess.Popen(sendmail, stdin=subprocess.PIPE)
