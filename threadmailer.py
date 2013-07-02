@@ -38,18 +38,16 @@ Event Timestamp:    {0}
 
 Check That Failed:  {1}
 Check Command:      {2}                                         
-Check Flapping:     {3}                          
-Check Occurrences:  {4}                                              
-Check History:      {5}
+Check Occurrences:  {3                                              
+Check History:      {4}
                                                                                           
-Node Name:          {6}
-Node IP Address:    {7}                                      
-Node LPOL:          {8}                        
-Node Subscriptions: {9}                       
+Node Name:          {5}
+Node IP Address:    {6}                                      
+Node LPOL:          {7}                        
+Node Subscriptions: {8}                       
 """.format(time.strftime("%D %H:%M", time.localtime(int(alert['check']['issued']))),
            alert['check']['name'],
            alert['check']['command'],
-           alert['check']['flapping'],
            alert['occurrences'],
            status_history(alert['check']['history']),
            alert['client']['name'],
@@ -63,7 +61,7 @@ msg = MIMEText(email_msg)
 msg["From"] = "DevOps <devops@threadless.com>"
 msg["Name"] = "DevOps"
 msg["To"] = "adam.enger@skinnycorp.com"
-msg["Subject"] = "%s :: %s" % (statuses[alert['check']['status']], alert['check']['name'])
+msg["Subject"] = "%s :: %s" % (statuses[alert['check']['status']], alert['client']['name'], alert['check']['name'])
 
 #fire it off
 proc = subprocess.Popen(sendmail, stdin=subprocess.PIPE)
