@@ -38,7 +38,7 @@ Event Timestamp:    {0}
 
 Check That Failed:  {1}
 Check Command:      {2}                                         
-Check Occurrences:  {3                                              
+Check Occurrences:  {3}                                              
 Check History:      {4}
                                                                                           
 Node Name:          {5}
